@@ -1,0 +1,5 @@
+django_env
+tablas.sql
+*.pyc
+db.sqlite3
+liga/settings.py
