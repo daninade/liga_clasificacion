@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 from .models import Equipo
+
 def index(request):
     template = loader.get_template('my_first_html.html')
     return HttpResponse(template.render())
@@ -17,3 +18,9 @@ def clasificacion(request):
         "teams" : myteams,
     }
     return HttpResponse(template.render(context, request))
+
+def jornada(request):
+    return HttpResponse("JORNADA ACTUAL")
+
+def calendario(request):
+    return HttpResponse("Calendario temporada")

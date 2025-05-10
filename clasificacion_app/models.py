@@ -123,9 +123,13 @@ class DjangoSession(models.Model):
 
 
 class Equipo(models.Model):
+    id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=50)
     ciudad = models.CharField(max_length=50, blank=True, null=True)
     liga = models.ForeignKey('Liga', models.DO_NOTHING, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.nombre}"
 
     class Meta:
         managed = False
@@ -133,10 +137,14 @@ class Equipo(models.Model):
 
 
 class Jornada(models.Model):
+    id = models.AutoField(primary_key=True)
     liga = models.ForeignKey('Liga', models.DO_NOTHING, blank=True, null=True)
     numero = models.IntegerField()
     fecha_inicio = models.DateField()
     fecha_fin = models.DateField()
+
+    def __str__(self):
+        return f"{self.numero}"
 
     class Meta:
         managed = False
@@ -156,23 +164,32 @@ class Jugador(models.Model):
     tarjetas_amarillas = models.IntegerField(blank=True, null=True)
     tarjetas_rojas = models.IntegerField(blank=True, null=True)
 
+    def __str__(self):
+        return f"{self.nombre} {self.primer_apellido}"
+
     class Meta:
         managed = False
         db_table = 'jugador'
 
 
 class Liga(models.Model):
+    id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=50)
     fecha_inicio = models.DateField()
     fecha_fin = models.DateField()
 
+    def __str__(self):
+        return f"{self.nombre}"
+    
     class Meta:
         managed = False
         db_table = 'liga'
 
 
 class Partido(models.Model):
+    id = models.AutoField(primary_key=True)
     liga = models.ForeignKey(Liga, models.DO_NOTHING, blank=True, null=True)
+    jornada = models.ForeignKey(Jornada, models.DO_NOTHING, blank=True, null=True)
     equipo_local = models.ForeignKey(Equipo, models.DO_NOTHING, db_column='equipo_local', blank=True, null=True)
     equipo_visitante = models.ForeignKey(Equipo, models.DO_NOTHING, db_column='equipo_visitante', related_name='partido_equipo_visitante_set', blank=True, null=True)
     arbitro = models.CharField(max_length=50, blank=True, null=True)
@@ -184,6 +201,9 @@ class Partido(models.Model):
     tarjetas_rojas_local = models.IntegerField(blank=True, null=True)
     tarjetas_amarillas_visitantes = models.IntegerField(blank=True, null=True)
     tarjetas_rojas_visitante = models.IntegerField(blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.equipo_local}  - {self.equipo_visitante}"
 
     class Meta:
         managed = False

@@ -22,6 +22,8 @@ urlpatterns = [
     path('', include('clasificacion_app.urls')),
     path('admin/', admin.site.urls),
     path('clasificacion/', views.clasificacion),
-    path('home/', views.home)
+    path('home/', views.home),
+    path('calendario', views.calendario),
+    path('jornada', views.jornada)
 
 ]
