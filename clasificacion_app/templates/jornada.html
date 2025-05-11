@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Jornada {{jornada.numero}}</h1>
+  
+<ul>
+  {% for x in partido %}
+    <li>{{ x.equipo_local }} {{ x.marcador }} {{ x.equipo_visitante }}</li>
+  {% endfor %}
+</ul>
+</body>
+</html>

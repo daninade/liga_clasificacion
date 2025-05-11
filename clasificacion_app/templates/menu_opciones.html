@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Opciones de la liga: {{ liga.nombre }}</h1>
+
+<ul>
+  <li><a href="{% url 'jornada' liga.id %}">Resultados</a></li>
+  <li><a href="{% url 'calendario' liga.id %}">Calendario</a></li>
+  <li><a href="{% url 'clasificacion' liga.id %}">Clasificación</a></li>
+</ul>
+
+</body>
+</html>

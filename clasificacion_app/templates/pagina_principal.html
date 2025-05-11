@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Ligas</h1>
+<h2>Seleccione la liga para consultar los datos:</h2>
+
+<ul>
+  {% for x in leagues %}
+  <li><a href="liga/{{x.id}}/">{{ x.nombre }}</a></li>
+  {% endfor %}
+</ul>
+
+</body>
+</html>

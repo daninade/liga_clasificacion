@@ -205,6 +205,12 @@ class Partido(models.Model):
     def __str__(self):
         return f"{self.equipo_local}  - {self.equipo_visitante}"
 
+    @property
+    def marcador(self):
+        if self.goles_local is not None and self.goles_visitante is not None:
+            return f"{self.goles_local} - {self.goles_visitante}"
+        return " - "  # o "Pendiente"
+
     class Meta:
         managed = False
         db_table = 'partido'
